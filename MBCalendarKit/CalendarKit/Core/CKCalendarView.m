@@ -73,7 +73,12 @@
         [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"noDataCell"];
         
         //  Events for selected date
-        _events = [NSMutableArray new];
+        NSMutableArray *temp = [NSMutableArray new];
+        CKCalendarEvent *event = [[CKCalendarEvent alloc] init];
+        [event setDate:[NSDate date]];
+        [temp addObject:event];
+        _events = temp;
+        
         
         //  Used for animation
         _previousDate = [NSDate date];
@@ -116,7 +121,12 @@
         
         [self setEvents:sortedArray];
     }
-    
+    /*
+    NSMutableArray *temp = [NSMutableArray new];
+    CKCalendarEvent *event = [[CKCalendarEvent alloc] init];
+    [event setDate:[NSDate date]];
+    [temp addObject:event];
+    [self setEvents:temp];*/
     [[self table] reloadData];
     
     [self layoutSubviewsAnimated:animated];

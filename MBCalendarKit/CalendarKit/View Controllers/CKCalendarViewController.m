@@ -7,8 +7,8 @@
 //
 
 #import "CKCalendarViewController.h"
-
 #import "CKCalendarViewControllerInternal.h"
+#import "NSDate+Components.h"
 
 @interface CKCalendarViewController () <CKCalendarViewDataSource, CKCalendarViewDelegate>
 
@@ -46,6 +46,12 @@
 
 - (NSArray *)calendarView:(CKCalendarView *)CalendarView eventsForDate:(NSDate *)date
 {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:kCFCalendarUnitDay | kCFCalendarUnitMonth | kCFCalendarUnitYear fromDate:date];
+    NSInteger day = [components day];
+    NSInteger month = [components month];
+    NSInteger year = [components year];
+    
+    date = [NSDate dateWithDay:30 month:12 year:2013];
     if ([[self dataSource] respondsToSelector:@selector(calendarView:eventsForDate:)]) {
         return [[self dataSource] calendarView:CalendarView eventsForDate:date];
     }

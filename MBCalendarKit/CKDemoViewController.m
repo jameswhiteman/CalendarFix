@@ -32,6 +32,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
+    CKCalendarEvent *event = [[CKCalendarEvent alloc] init];
+    [event setTitle:@"NSTITLENAMETHATISAPPROPRIATELENGTHFOROBJECTIVEC"];
+    NSDate *mDate = [NSDate dateWithDay:30 month:12 year:2013];
+    [event setDate:mDate];
+    [temp setObject:event forKey:mDate];
+    self.data = temp;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -55,7 +62,9 @@
 
 - (NSArray *)calendarView:(CKCalendarView *)calendarView eventsForDate:(NSDate *)date
 {
-    return [self data][date];
+    CKCalendarEvent *poop = [self data][date];
+    NSArray *morePoop = [NSArray arrayWithObjects:poop, nil];
+    return morePoop;
 }
 
 #pragma mark - CKCalendarViewDelegate
